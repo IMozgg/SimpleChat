@@ -6,6 +6,4 @@ public interface IClientModel {
     StringBuilder getHistory();
 
     StringBuilder getLastMessage();
-
-    FileSystem getFileSystem();
 }

@@ -37,11 +37,6 @@ public class Client implements Serializable, IClientModel {
     }
 
     @Override
-    public FileSystem getFileSystem() {
-        return this.fs;
-    }
-
-    @Override
     public StringBuilder getLastMessage() {
         StringBuilder tempString = new StringBuilder();
         StringBuilder tempHistory = getHistory();
