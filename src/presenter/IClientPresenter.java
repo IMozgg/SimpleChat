@@ -11,4 +11,6 @@ public interface IClientPresenter {
     void setView(MainForm form);
 
     MainForm getView();
+
+    String getHistory();
 }

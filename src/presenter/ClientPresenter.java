@@ -30,4 +30,9 @@ public class ClientPresenter implements IClientPresenter{
     public MainForm getView() {
         return this.viewModel;
     }
+
+    @Override
+    public String getHistory() {
+        return getModel().getHistory().toString();
+    }
 }

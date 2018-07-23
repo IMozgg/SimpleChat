@@ -4,6 +4,10 @@ import java.io.*;
 
 public class FileSystem implements IFileSystem {
     final File dataBase;
+    final File dir = new File("src\\dataBase");
+    ;
+    final File textFile = new File("src\\dataBase\\Chat.txt");
+
     final String pathBD;
     private BufferedReader buffR;
     private BufferedWriter buffW;
@@ -15,13 +19,15 @@ public class FileSystem implements IFileSystem {
     }
 
     private void init() {
-        try {
-            buffR = new BufferedReader(new FileReader(dataBase));
-            buffW = new BufferedWriter(new FileWriter(dataBase, true));
-        } catch (FileNotFoundException e) {
-            System.err.println("Не найден файл ( " + dataBase.getPath() + " )");
-        } catch (IOException e) {
-            System.err.println("Ошибка ввода/вывода (при организации потоков)");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        if (!textFile.exists()) {
+            try {
+                textFile.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Ошибка ввода/вывода. Невозможно создать файл");
+            }
         }
     }
 

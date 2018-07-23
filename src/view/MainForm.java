@@ -38,4 +38,9 @@ public class MainForm extends JFrame implements IView{
     public ClientPresenter getPresenter() {
         return this.clientPresenter;
     }
+
+    @Override
+    public void updateFormFromModel() {
+        message.setText(getPresenter().getHistory());
+    }
 }
