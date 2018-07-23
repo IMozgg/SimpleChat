@@ -4,8 +4,11 @@ import presenter.ClientPresenter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class MainForm extends JFrame implements IView{
+    public volatile static boolean FLAG_ON_DEAMON = true;
+
     private ClientPresenter clientPresenter;
     private JTextArea messageField;
     private JTextField message;
@@ -22,11 +25,16 @@ public class MainForm extends JFrame implements IView{
         message = new JTextField();
         messageField.setEnabled(false);
 
+        message.addActionListener(this::addActionForTextBox);
+
         this.add(messageField);
         this.add(message, BorderLayout.SOUTH);
+    }
 
-        this.setVisible(true);
-        message.requestFocus();
+    private void addActionForTextBox(ActionEvent l) {
+        getPresenter().sendMessage(message.getText());
+        message.setText("");
+        updateFormFromModel();
     }
 
     @Override
@@ -40,7 +48,25 @@ public class MainForm extends JFrame implements IView{
     }
 
     @Override
-    public void updateFormFromModel() {
-        message.setText(getPresenter().getHistory());
+    public synchronized void updateFormFromModel() {
+        messageField.setText(getPresenter().getHistory());
+    }
+
+    @Override
+    public void onCreate() {
+        updateFormFromModel();
+    }
+
+    @Override
+    public void open() {
+        this.onCreate();
+        this.setVisible(true);
+        message.requestFocus();
+    }
+
+    @Override
+    public void close() {
+        this.setVisible(false);
+        MainForm.FLAG_ON_DEAMON = false;
     }
 }

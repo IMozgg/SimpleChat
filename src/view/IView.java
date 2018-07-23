@@ -7,5 +7,11 @@ public interface IView {
 
     void updateFormFromModel();
 
+    void onCreate();
+
     ClientPresenter getPresenter();
+
+    void open();
+
+    void close();
 }

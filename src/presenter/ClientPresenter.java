@@ -1,6 +1,7 @@
 package presenter;
 
 import model.Client;
+import view.Deamon;
 import view.MainForm;
 
 public class ClientPresenter implements IClientPresenter{
@@ -34,5 +35,23 @@ public class ClientPresenter implements IClientPresenter{
     @Override
     public String getHistory() {
         return getModel().getHistory().toString();
+    }
+
+    @Override
+    public void run() {
+        getView().setPresenter(this);
+        Thread deamon = new Thread(new Deamon(getView()));
+        deamon.setDaemon(true);
+        deamon.start();
+    }
+
+    @Override
+    public void sendMessage(String msg) {
+        getModel().sendMessage(msg);
+    }
+
+    @Override
+    public StringBuilder getLastMessage() {
+        return getModel().getLastMessage();
     }
 }

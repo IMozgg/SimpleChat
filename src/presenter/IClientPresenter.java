@@ -13,4 +13,10 @@ public interface IClientPresenter {
     MainForm getView();
 
     String getHistory();
+
+    void run();
+
+    void sendMessage(String msg);
+
+    StringBuilder getLastMessage();
 }
