@@ -3,9 +3,9 @@ package model;
 public interface IClientModel {
     boolean sendMessage(String msg);
 
-    String getMessage();
+    StringBuilder getHistory();
 
-    void setFileSystem(FileSystem fs);
+    StringBuilder getLastMessage();
 
     FileSystem getFileSystem();
 }

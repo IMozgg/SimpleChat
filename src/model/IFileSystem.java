@@ -1,7 +1,7 @@
 package model;
 
 public interface IFileSystem {
-    String getText();
+    StringBuilder getText();
 
     void setAppendText(String msg);
 }

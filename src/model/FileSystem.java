@@ -48,7 +48,7 @@ public class FileSystem implements IFileSystem {
         }
     }
 
-    public String getText() {
+    public StringBuilder getText() {
         StringBuilder tempData = new StringBuilder();
         try {
             openReadStream();
@@ -67,7 +67,7 @@ public class FileSystem implements IFileSystem {
             }
         }
 
-        return tempData.toString();
+        return tempData;
     }
 
     public void setAppendText(String msg) {
