@@ -1,6 +1,7 @@
 package presenter;
 
 import model.Client;
+import view.EventEnum;
 import view.MainForm;
 
 public interface IClientPresenter {
@@ -19,4 +20,8 @@ public interface IClientPresenter {
     void sendMessage(String msg);
 
     StringBuilder getLastMessage();
+
+    void updateFormToModel();
+
+    void updateModelToFrom(EventEnum e);
 }

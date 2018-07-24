@@ -34,7 +34,7 @@ public class MainForm extends JFrame implements IView{
     private void addActionForTextBox(ActionEvent l) {
         getPresenter().sendMessage(message.getText());
         message.setText("");
-        updateFormFromModel();
+        //getPresenter().updateModelToFrom(EventEnum.LIGHT_UPDATE);
     }
 
     @Override
@@ -48,13 +48,8 @@ public class MainForm extends JFrame implements IView{
     }
 
     @Override
-    public synchronized void updateFormFromModel() {
-        messageField.setText(getPresenter().getHistory());
-    }
-
-    @Override
     public void onCreate() {
-        updateFormFromModel();
+        getPresenter().updateModelToFrom(EventEnum.ON_CREATE);
     }
 
     @Override
@@ -68,5 +63,10 @@ public class MainForm extends JFrame implements IView{
     public void close() {
         this.setVisible(false);
         MainForm.FLAG_ON_DEAMON = false;
+    }
+
+    @Override
+    public JTextArea getTextArea() {
+        return messageField;
     }
 }

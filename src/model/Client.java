@@ -11,7 +11,7 @@ public class Client implements Serializable, IClientModel {
         this.name = name;
         this.localHistory = new StringBuilder();
         this.fs = new FileSystem();
-        this.localHistory.append(fs.getText());
+        this.localHistory.append(getHistory());
     }
 
     @Override
@@ -33,17 +33,22 @@ public class Client implements Serializable, IClientModel {
         if (sb.length() > 0) {
             return sb;
         } else
-        return sb;
+            return sb;
     }
 
     @Override
-    public StringBuilder getLastMessage() {
+    public synchronized StringBuilder getLastMessage() {
         StringBuilder tempString = new StringBuilder();
         StringBuilder tempHistory = getHistory();
 
-        if (localHistory.length() > 0) {
-            tempString.append(tempHistory.substring(localHistory.length() - 1));
-        }
+        tempString.append(tempHistory.substring(localHistory.length()));
+        //localHistory.append(tempString);
+
         return tempString;
+    }
+
+    @Override
+    public void addLocalHistory(String msg) {
+        localHistory.append(msg);
     }
 }

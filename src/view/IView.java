@@ -2,10 +2,12 @@ package view;
 
 import presenter.ClientPresenter;
 
+import javax.swing.*;
+
 public interface IView {
     void setPresenter(ClientPresenter clientPresenter);
 
-    void updateFormFromModel();
+    JTextArea getTextArea();
 
     void onCreate();
 

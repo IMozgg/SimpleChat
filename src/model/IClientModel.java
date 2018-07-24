@@ -6,4 +6,6 @@ public interface IClientModel {
     StringBuilder getHistory();
 
     StringBuilder getLastMessage();
+
+    void addLocalHistory(String msg);
 }

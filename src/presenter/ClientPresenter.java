@@ -2,6 +2,7 @@ package presenter;
 
 import model.Client;
 import view.Deamon;
+import view.EventEnum;
 import view.MainForm;
 
 public class ClientPresenter implements IClientPresenter{
@@ -40,7 +41,7 @@ public class ClientPresenter implements IClientPresenter{
     @Override
     public void run() {
         getView().setPresenter(this);
-        Thread deamon = new Thread(new Deamon(getView()));
+        Thread deamon = new Thread(new Deamon(this));
         deamon.setDaemon(true);
         deamon.start();
     }
@@ -48,10 +49,27 @@ public class ClientPresenter implements IClientPresenter{
     @Override
     public void sendMessage(String msg) {
         getModel().sendMessage(msg);
+
     }
 
     @Override
     public StringBuilder getLastMessage() {
         return getModel().getLastMessage();
+    }
+
+    @Override
+    public synchronized void updateFormToModel() {
+
+    }
+
+    @Override
+    public void updateModelToFrom(EventEnum e) {
+        //Обновление формы если при событии onCreate
+        if (e == EventEnum.ON_CREATE) {
+            getView().getTextArea().setText(getHistory());
+        } else {
+            getView().getTextArea().setText(getView().getTextArea().getText() + getLastMessage());
+        }
+        getModel().addLocalHistory(getLastMessage().toString());
     }
 }
