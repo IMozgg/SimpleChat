@@ -41,7 +41,9 @@ public class Client implements Serializable, IClientModel {
         StringBuilder tempString = new StringBuilder();
         StringBuilder tempHistory = getHistory();
 
-        tempString.append(tempHistory.substring(localHistory.length() - 1));
+        if (localHistory.length() > 0) {
+            tempString.append(tempHistory.substring(localHistory.length() - 1));
+        }
         return tempString;
     }
 }
