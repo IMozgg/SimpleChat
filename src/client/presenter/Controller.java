@@ -4,10 +4,10 @@ import client.model.Model;
 import client.model.Operable;
 import client.tags.TagsMsg;
 import client.view.ClientForm;
-
+import client.view.FormOperable;
 import java.io.DataInputStream;
 
-public class Controller implements Operable {
+public class Controller implements Operable, Configurable {
     private Operable model;
     private ClientForm view;
     private volatile Thread managerMessages;
@@ -22,13 +22,7 @@ public class Controller implements Operable {
         model.send(msg);
     }
 
-    public void setModel(Model model) {
-        this.model = model;
-    }
 
-    public void setView(ClientForm view) {
-        this.view = view;
-    }
 
     public void run() {
         view.setController(this);
@@ -52,5 +46,25 @@ public class Controller implements Operable {
     @Override
     public String getName() {
         return model.getName();
+    }
+
+    @Override
+    public Operable getModel() {
+        return this.model;
+    }
+
+    @Override
+    public void setView(ClientForm view) {
+        this.view = view;
+    }
+
+    @Override
+    public FormOperable getView() {
+        return this.view;
+    }
+
+    @Override
+    public void setModel(Model model) {
+        this.model = model;
     }
 }

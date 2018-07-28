@@ -16,8 +16,6 @@ public class ThreadsSockets implements Runnable {
     private static List<ThreadsSockets> listClients = Collections.synchronizedList(new ArrayList<>());
     private String login;
     private TagsMsg tags;
-    //private final static String TAG_BRC_LIST_CLIENTS = "<broadcastListClients@1122>";
-    //private final static String TAG_REQ_SET_NAME = "<setName@1122>";
 
     public ThreadsSockets(Socket socket) {
         this.socket = socket;

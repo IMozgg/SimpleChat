@@ -2,14 +2,20 @@ package client;
 
 import client.view.ClientForm;
 import client.presenter.Controller;
-import client.model.Model;
+import client.view.LoginForm;
 
 public class Client {
     public static void main(String[] args) {
-        Model model = new Model(3310, "localhost", "Васян");
-        ClientForm view = new ClientForm();
         Controller ctrl = new Controller();
-        ctrl.setModel(model);
+        LoginForm loginForm = new LoginForm(ctrl);
+
+        //  Нужно дождаться создания модели, прежде чем запустить программу
+        while (loginForm != null) {
+            if (!loginForm.isRun()) {
+                break;
+            }
+        }
+        ClientForm view = new ClientForm();
         ctrl.setView(view);
 
         ctrl.run();

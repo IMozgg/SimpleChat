@@ -1,6 +1,5 @@
 package client.presenter;
 
-import Server.ThreadsSockets;
 import client.tags.TagsMsg;
 
 import javax.swing.*;
