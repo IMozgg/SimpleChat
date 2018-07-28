@@ -55,7 +55,7 @@ public class ThreadsSockets implements Runnable {
         for (ThreadsSockets listClient : listClients) {
             try {
                 listClient.dataOutput.writeUTF(msg);
-                //listClient.dataOutput.flush();
+                listClient.dataOutput.flush();
             } catch (IOException e) {
                 System.err.println("Ошибка отправки сообщения клиенту");
             }

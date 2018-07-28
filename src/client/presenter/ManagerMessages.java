@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class DeamonGetMessage implements Runnable {
+public class ManagerMessages implements Runnable {
     private DataInputStream dataInputStream;
     private JTextArea textArea;
     private DefaultListModel<String> clientList;
 
-    public DeamonGetMessage(DataInputStream dataInputStream, JTextArea textArea, DefaultListModel<String> clientList) {
+    public ManagerMessages(DataInputStream dataInputStream, JTextArea textArea, DefaultListModel<String> clientList) {
         this.dataInputStream = dataInputStream;
         this.textArea = textArea;
         this.clientList = clientList;
@@ -20,7 +20,7 @@ public class DeamonGetMessage implements Runnable {
         String getMsg;
         while (true) {
             try {
-               getMsg = dataInputStream.readUTF();
+                getMsg = dataInputStream.readUTF();
                 if (getMsg.length() > 0) {
                     if (getMsg.startsWith("getName@1122")) {
                         clientList.addElement(getMsg.substring("getName@1122:".length()));
@@ -29,7 +29,7 @@ public class DeamonGetMessage implements Runnable {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println(e.getStackTrace());
             }
         }
     }

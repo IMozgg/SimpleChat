@@ -9,8 +9,7 @@ import java.io.DataInputStream;
 public class Controller implements Operable {
     private Operable model;
     private ClientForm view;
-    private Thread deamonGetMessage;
-
+    private volatile Thread managerMessages;
 
     public Controller() {
 
@@ -32,9 +31,9 @@ public class Controller implements Operable {
     public void run() {
         view.setController(this);
         view.showForm();
-        deamonGetMessage = new Thread(new DeamonGetMessage(model.getInputStream(), view.getTextArea(), view.getCurListClients()));
-        deamonGetMessage.setDaemon(true);
-        deamonGetMessage.start();
+        managerMessages = new Thread(new ManagerMessages(model.getInputStream(), view.getTextArea(), view.getCurListClients()));
+        managerMessages.setDaemon(true);
+        managerMessages.start();
         model.send("setName@1122:" + model.getName());
     }
 
