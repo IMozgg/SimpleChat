@@ -1,4 +1,6 @@
-package Server;
+package client.view;
+
+import client.presenter.Controller;
 
 import javax.swing.*;
 

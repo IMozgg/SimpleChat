@@ -1,4 +1,8 @@
-package Server;
+package client.presenter;
+
+import client.model.Model;
+import client.model.Operable;
+import client.view.ClientForm;
 
 import java.io.DataInputStream;
 

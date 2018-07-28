@@ -1,4 +1,4 @@
-package Server;
+package client.model;
 
 import java.io.DataInputStream;
 

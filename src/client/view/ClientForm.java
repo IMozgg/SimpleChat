@@ -1,4 +1,7 @@
-package Server;
+package client.view;
+
+import client.presenter.Controller;
+import client.model.Operable;
 
 import javax.swing.*;
 import javax.swing.border.Border;

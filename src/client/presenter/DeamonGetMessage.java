@@ -1,4 +1,4 @@
-package Server;
+package client.presenter;
 
 import javax.swing.*;
 import java.io.DataInputStream;
