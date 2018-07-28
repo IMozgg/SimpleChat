@@ -2,6 +2,7 @@ package client.presenter;
 
 import client.model.Model;
 import client.model.Operable;
+import client.tags.TagsMsg;
 import client.view.ClientForm;
 
 import java.io.DataInputStream;
@@ -10,6 +11,7 @@ public class Controller implements Operable {
     private Operable model;
     private ClientForm view;
     private volatile Thread managerMessages;
+    private TagsMsg tags;
 
     public Controller() {
 
@@ -34,7 +36,7 @@ public class Controller implements Operable {
         managerMessages = new Thread(new ManagerMessages(model.getInputStream(), view.getTextArea(), view.getCurListClients()));
         managerMessages.setDaemon(true);
         managerMessages.start();
-        model.send("setName@1122:" + model.getName());
+        model.send(tags.TAG_REQ_SET_NAME.toString() + model.getName());
     }
 
     @Override

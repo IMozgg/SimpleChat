@@ -16,11 +16,12 @@ public class ClientForm extends JFrame implements FormOperable {
     private JTextArea historyMessage;
     private JButton send;
     private JList<String> listClients;
-    private DefaultListModel<String> clients = new DefaultListModel();
+    private DefaultListModel<String> clients;
     private JPanel panelSend;
 
     public ClientForm() {
         this.setTitle("Чат мурзилка v1.0");
+        clients = new DefaultListModel<>();
         init();
     }
 
@@ -42,7 +43,7 @@ public class ClientForm extends JFrame implements FormOperable {
         Border etched = BorderFactory.createEtchedBorder();
         listClients.setBorder(etched);
         historyMessage.setBorder(etched);
-        listClients.setPrototypeCellValue("                    ");
+        listClients.setPrototypeCellValue("                       ");
 
         this.add(historyMessage, BorderLayout.CENTER);
         this.add(listClients, BorderLayout.EAST);
