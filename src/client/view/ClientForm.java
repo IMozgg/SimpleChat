@@ -43,7 +43,7 @@ public class ClientForm extends JFrame implements FormOperable {
         Border etched = BorderFactory.createEtchedBorder();
         listClients.setBorder(etched);
         historyMessage.setBorder(etched);
-        listClients.setPrototypeCellValue("                       ");
+        listClients.setPrototypeCellValue("############");
 
         this.add(historyMessage, BorderLayout.CENTER);
         this.add(listClients, BorderLayout.EAST);
@@ -66,8 +66,10 @@ public class ClientForm extends JFrame implements FormOperable {
     }
 
     private void setActionButton(ActionEvent e) {
-        ctrl.send(msg.getText());
-        msg.setText("");
+        if (msg.getText().length() > 0) {
+            ctrl.send(msg.getText());
+            msg.setText("");
+        }
     }
 
     @Override
